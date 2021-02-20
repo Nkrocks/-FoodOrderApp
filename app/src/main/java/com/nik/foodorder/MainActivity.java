@@ -7,42 +7,61 @@ import android.view.MenuItem;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.viewpager.widget.ViewPager;
 
-import com.nik.foodorder.Adapters.MainAdapter;
-import com.nik.foodorder.Models.MainModel;
-import com.nik.foodorder.databinding.ActivityMainBinding;
-
-import java.util.ArrayList;
+import com.google.android.material.tabs.TabItem;
+import com.google.android.material.tabs.TabLayout;
+import com.nik.foodorder.Adapters.PageAdapter;
 
 public class MainActivity extends AppCompatActivity {
-    ActivityMainBinding binding;
+    com.nik.foodorder.databinding.ActivityMainBinding binding;
+
+    TabLayout tabLayout;
+    TabItem vegtab,nonvegtab;
+    ViewPager viewPager;
+    PageAdapter pageAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        binding = ActivityMainBinding.inflate(getLayoutInflater());
-        setContentView(binding.getRoot());
+       setContentView(R.layout.activity_main);
 
-        ArrayList<MainModel> list = new ArrayList<>();
+        tabLayout = (TabLayout)findViewById(R.id.tablayout1);
+        vegtab = (TabItem)findViewById(R.id.vegtab);
+        nonvegtab = (TabItem)findViewById(R.id.nonvegtab);
+        viewPager = (ViewPager) findViewById(R.id.vpager);
 
-        list.add(new MainModel(R.drawable.burger,"Burger","150","This is a big patty big Burger ..."));
-        list.add(new MainModel(R.drawable.fries,"French Fries","80","Very Very Tasty yummy Fries ..."));
-        list.add(new MainModel(R.drawable.pizza,"Pizza","250","An Awesome Pizza on the House full pArtyyy pizzaa party ..."));
-        list.add(new MainModel(R.drawable.burgertwo,"Big Burger","200","This is a big patty big Burger ..."));
-        list.add(new MainModel(R.drawable.burger,"Burger","140","This is a big patty big Burger ..."));
-        list.add(new MainModel(R.drawable.burger,"Burger","40","This is a big patty big Burger ..."));
+        pageAdapter = new PageAdapter(getSupportFragmentManager(),2);
+        viewPager.setAdapter(pageAdapter);
 
-        MainAdapter adapter = new MainAdapter(list,this);
-        binding.recyclerview.setAdapter(adapter);
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                viewPager.setCurrentItem(tab.getPosition());
 
-        LinearLayoutManager layoutManager = new LinearLayoutManager(this);
-        binding.recyclerview.setLayoutManager(layoutManager);
+                if(tab.getPosition()==0 || tab.getPosition()==1){
+                    pageAdapter.notifyDataSetChanged();
+                }
+            }
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
+
+        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+        //listen for scroll or page change
+
 
     }
 
-    @Override
+   @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu,menu);
         return super.onCreateOptionsMenu(menu);

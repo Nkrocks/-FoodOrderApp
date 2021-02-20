@@ -69,8 +69,8 @@ public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.viewholder
                                 DBHelper helper = new DBHelper(context);
                                 if (helper.deleteOrder(model.getOrderNumber())>0){
                                     Toast.makeText(context,"Order Deleted",Toast.LENGTH_SHORT).show();
-                                    Intent intent=new Intent(context, OrderActivity.class);
-                                    context.startActivity(intent);
+                                     Intent intent=new Intent(context, OrderActivity.class);
+                                     context.startActivity(intent);
 
                                 }else{
                                     Toast.makeText(context,"Error",Toast.LENGTH_SHORT).show();
