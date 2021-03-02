@@ -16,6 +16,7 @@ public class DBHelper extends SQLiteOpenHelper {
 
     final static  String DBNAME = "mydatabase.db";
     final static int DBVERSION = 1;
+    int Tprice;
 
     public DBHelper(@Nullable Context context) {
         super(context, DBNAME, null, DBVERSION);
@@ -87,6 +88,7 @@ public class DBHelper extends SQLiteOpenHelper {
                 model.setPrice(cursor.getInt(3)+"");
                 model.setFinPrice(cursor.getInt(4)+"");
                 orders.add(model);
+                Tprice += cursor.getInt(3);
             }
         }
         cursor.close();
@@ -138,7 +140,11 @@ public class DBHelper extends SQLiteOpenHelper {
 
     public int deleteOrder(String id){
         SQLiteDatabase database = this.getWritableDatabase();
-
         return database.delete("orders","id="+id,null);
     }
+
+    public int totalPrice(){
+        return Tprice;
+    }
+
 }

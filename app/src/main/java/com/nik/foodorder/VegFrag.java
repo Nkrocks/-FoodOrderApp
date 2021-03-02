@@ -19,7 +19,7 @@ import java.util.ArrayList;
  * Use the {@link VegFrag#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class VegFrag extends Fragment {
+public class  VegFrag extends Fragment {
    // com.nik.foodorder.databinding.ActivityMainBinding binding;
     FragmentVegBinding binding;
 

@@ -26,6 +26,7 @@ public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.viewholder
 
     ArrayList<OrdersModel>list;
     Context context;
+
     public OrdersAdapter(ArrayList<OrdersModel> list, Context context) {
         this.list = list;
         this.context = context;
@@ -40,7 +41,6 @@ public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.viewholder
 
     @Override
     public void onBindViewHolder(@NonNull viewholder holder, int position) {
-
         final OrdersModel model = list.get(position);
         holder.orderImage.setImageResource(model.getOrderImage());
         holder.soldItemName.setText(model.getSoldItemName());
@@ -69,9 +69,10 @@ public class OrdersAdapter extends RecyclerView.Adapter<OrdersAdapter.viewholder
                                 DBHelper helper = new DBHelper(context);
                                 if (helper.deleteOrder(model.getOrderNumber())>0){
                                     Toast.makeText(context,"Order Deleted",Toast.LENGTH_SHORT).show();
-                                     Intent intent=new Intent(context, OrderActivity.class);
-                                     context.startActivity(intent);
-
+                                    list.remove(position);
+                                    notifyItemRemoved(position);
+                                    Intent intent = new Intent(context, OrderActivity.class);
+                                    context.startActivity(intent);
                                 }else{
                                     Toast.makeText(context,"Error",Toast.LENGTH_SHORT).show();
                                 }

@@ -14,7 +14,6 @@ import com.google.android.material.tabs.TabLayout;
 import com.nik.foodorder.Adapters.PageAdapter;
 
 public class MainActivity extends AppCompatActivity {
-    com.nik.foodorder.databinding.ActivityMainBinding binding;
 
     TabLayout tabLayout;
     TabItem vegtab,nonvegtab;

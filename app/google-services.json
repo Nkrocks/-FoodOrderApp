@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "121705283933",
+    "project_id": "foodorderapp-6370e",
+    "storage_bucket": "foodorderapp-6370e.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:121705283933:android:4d32305fefdd9bd21ae8b4",
+        "android_client_info": {
+          "package_name": "com.nik.foodorder"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "121705283933-6mf67oqess398d56cbq4kni6olpvrmu6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCvHABomSAF7gqfwhUZuRKevXdPRCE6Q_w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "121705283933-6mf67oqess398d56cbq4kni6olpvrmu6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
